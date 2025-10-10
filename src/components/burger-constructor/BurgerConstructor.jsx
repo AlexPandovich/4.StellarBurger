@@ -17,7 +17,7 @@ import styles from "./BurgerConstructor.module.scss";
 class BurgerConstructor extends React.Component {
     render() {
         return (
-            <div className={`${styles.constructor__wrapper} pl-4 pr-4`}>
+            <div className={`${styles.constructor} pl-4 pr-4`}>
                 <ul
                     role="list"
                     className={`${styles.constructor__list} pt-25 pl-4 pr-4`}
@@ -27,7 +27,7 @@ class BurgerConstructor extends React.Component {
                         <ConstructorElement
                             type="top"
                             isLocked={true}
-                            text="Bun N-200i (top)"
+                            text="Crater Bun N-200i (top)"
                             price={20}
                             thumbnail={bunImage}
                         />
@@ -83,7 +83,7 @@ class BurgerConstructor extends React.Component {
                         <ConstructorElement
                             type="bottom"
                             isLocked={true}
-                            text="Bun N-200i (bottom)"
+                            text="Crater Bun N-200i (bottom)"
                             price={20}
                             thumbnail={bunImage}
                         />

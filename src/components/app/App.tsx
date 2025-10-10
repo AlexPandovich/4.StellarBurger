@@ -1,18 +1,20 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import AppHeader from "../app-header/AppHeader";
-import BurgerConstructor from "components/burget-constructor/BurgerConstructor";
+import BurgerConstructor from "components/burger-constructor/BurgerConstructor";
+import BurgerIngradients from "components/burger-ingradients/BurgerIngradients";
 
 class App extends React.Component {
     render() {
         return (
             <>
                 <AppHeader />
-                <main className="main-content">
-                    <div className="container">
+                <div className="container">
+                    <main className="main-content">
+                        <BurgerIngradients />
                         <BurgerConstructor />
-                    </div>
-                </main>
+                    </main>
+                </div>
             </>
         );
     }

@@ -1,0 +1,58 @@
+@use "styles/variables.scss" as *;
+
+.ingradients {
+    width: 50%;
+    @include outline;
+
+    &__header {
+        font-size: 36px;
+        line-height: 40px;
+        font-weight: bold;
+        @include outline;
+    }
+}
+
+.tab_wrapper {
+    display: flex;
+    @include outline;
+}
+
+.categories {
+    max-height: 656px;
+    overflow-y: auto;
+}
+
+.category {
+    &__header {
+        font-weight: bold;
+        font-size: 24px;
+        @include outline;
+    }
+}
+
+.item {
+    &__img {
+        @include outline;
+    }
+    &__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 24px;
+    }
+    &__price {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        @include outline;
+        span {
+            font-family: "Iceland";
+            font-size: 28px;
+        }
+    }
+    &__description {
+        text-align: center;
+        @include outline;
+    }
+}

@@ -1,16 +1,20 @@
 @use "styles/variables.scss" as *;
 
-.constructor__wrapper {
+.constructor {
     @include outline;
     width: 50%;
-}
-.constructor__list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding-left: 10px;
-    max-height: 656px;
-    overflow-y: auto;
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding-left: 10px;
+        max-height: 656px;
+        overflow-y: auto;
+    }
+    &__item {
+        display: flex;
+        align-items: center;
+    }
 }
 
 .total {
