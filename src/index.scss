@@ -1,0 +1,20 @@
+@use "styles/modern-normalize.css";
+@use "styles/basic.scss";
+@use "styles/variables.scss" as *;
+
+body {
+    font-family: "JetBrains Mono", monospace, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: $primary-light;
+}
+
+.container {
+    display: block;
+    margin: 0 auto;
+    width: 1280px;
+}
+
+.outline {
+    @include outline;
+}

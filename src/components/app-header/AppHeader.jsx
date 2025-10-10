@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./AppHeader.module.css";
-import "@ya.praktikum/react-developer-burger-ui-components";
+import styles from "./AppHeader.module.scss";
+
 import {
     Button,
     Logo,
@@ -13,7 +13,7 @@ class AppHeader extends React.Component {
     render() {
         return (
             <header className="p-4">
-                <div className={styles.container}>
+                <div className={`${styles.container} container`}>
                     <div className={styles.button_wrapper}>
                         <Button
                             htmlType="button"
@@ -21,10 +21,7 @@ class AppHeader extends React.Component {
                             size="small"
                             extraClass={`${styles.btn} ${styles.outline} `}
                         >
-                            <BurgerIcon
-                                type="primary"
-                                className={styles.outline}
-                            />
+                            <BurgerIcon type="primary" className="outline" />
                             <span>Order builder</span>
                         </Button>
                         <Button
@@ -33,15 +30,12 @@ class AppHeader extends React.Component {
                             size="small"
                             extraClass={`${styles.btn} ${styles.outline} `}
                         >
-                            <ListIcon
-                                type="primary"
-                                className={styles.outline}
-                            />
+                            <ListIcon type="primary" className="outline" />
                             <span>Order feed</span>
                         </Button>
                     </div>
 
-                    <Logo className={styles.outline} />
+                    <Logo className="outline" />
 
                     <Button
                         htmlType="button"
@@ -49,7 +43,7 @@ class AppHeader extends React.Component {
                         size="small"
                         extraClass={`${styles.btn} ${styles.outline} ${styles.personal_account} `}
                     >
-                        <ProfileIcon type="primary" />
+                        <ProfileIcon type="primary" className="outline" />
                         <span>Personal account</span>
                     </Button>
                 </div>

@@ -1,0 +1,8 @@
+$border-color: var(--colors-interface-accent);
+$header_bg: var(--background);
+
+$primary-light: #f2f2f3;
+
+@mixin outline {
+    border: 1px dashed $border-color;
+}
