@@ -31,14 +31,17 @@
 }
 
 .item {
+    width: 242px;
+    margin: 0 auto;
+    @include outline;
     &__img {
         @include outline;
     }
     &__wrapper {
         display: flex;
+        gap: 24px;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 24px;
     }
     &__price {
         display: flex;
