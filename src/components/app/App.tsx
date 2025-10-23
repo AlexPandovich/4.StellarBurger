@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.scss";
 import AppHeader from "../app-header/AppHeader";
-import BurgerConstructor from "components/burger-constructor/BurgerConstructor";
-import BurgerIngradients from "components/burger-ingradients/BurgerIngradients";
+import BurgerConstructor from "components/burger-constructor/burger-constructor";
+import BurgerIngradients from "components/burger-ingradients/burger-ingradients";
 import { ingredients } from "utils/data";
 
 class App extends React.Component {
