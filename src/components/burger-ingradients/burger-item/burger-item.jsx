@@ -4,7 +4,7 @@ import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components
 const BurgerItem = (props) => {
     const item = props.item;
     return (
-        <div key={item._id} className={styles.item}>
+        <div className={styles.item}>
             <img src={item.image} alt="" className={styles.item__img} />
             <div className={`${styles.item__price} mt-2`}>
                 <span>{item.price}</span>

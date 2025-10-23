@@ -1,0 +1,21 @@
+@use "styles/variables.scss" as *;
+
+.total {
+    @include outline;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    &__price {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-right: 10px;
+        span {
+            font-family: "Iceland";
+            font-size: 48px;
+        }
+    }
+}
+.button_width {
+    width: 215px;
+}
