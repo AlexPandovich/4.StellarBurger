@@ -1,5 +1,8 @@
 import styles from "./burger-item.module.scss";
-import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+    CurrencyIcon,
+    Counter,
+} from "@ya.praktikum/react-developer-burger-ui-components";
 
 const BurgerItem = (props) => {
     const item = props.item;
@@ -13,6 +16,7 @@ const BurgerItem = (props) => {
             <div className={`${styles.item__description} mt-2`}>
                 {item.name_en}
             </div>
+            {props.count > 0 && <Counter count={props.count} size="default" />}
         </div>
     );
 };
