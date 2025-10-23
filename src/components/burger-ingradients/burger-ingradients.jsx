@@ -5,6 +5,8 @@ import {
     CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-ingradients.module.scss";
+import BurgerItem from "./burger-item/burger-item";
+import BurgerContainer from "./buger-container/burger-container";
 
 const BurgerIngradients = (props) => {
     const [current, setCurrent] = React.useState("one");
@@ -45,83 +47,17 @@ const BurgerIngradients = (props) => {
             <div className={`${styles.categories} pt-10`}>
                 <div className={`${styles.category} `}>
                     <h2 className={`${styles.category__header}`}>Buns</h2>
-
-                    <div
-                        className={`${styles.item__wrapper} mt-6 mb-10 ml-4 mr-4`}
-                    >
-                        {grouped.bun.map((item) => (
-                            <div key={item._id} className={styles.item}>
-                                <img
-                                    src={item.image}
-                                    alt=""
-                                    className={styles.item__img}
-                                />
-                                <div className={`${styles.item__price} mt-2`}>
-                                    <span>{item.price}</span>
-                                    <CurrencyIcon type="primary" />
-                                </div>
-                                <div
-                                    className={`${styles.item__description} mt-2`}
-                                >
-                                    {item.name_en}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                    <BurgerContainer items={grouped.bun} />
                 </div>
 
                 <div className={`${styles.category}`}>
                     <h2 className={`${styles.category__header}`}>Sauces</h2>
-
-                    <div
-                        className={`${styles.item__wrapper} mt-6  mb-10 ml-4 mr-4`}
-                    >
-                        {grouped.sauce.map((item) => (
-                            <div key={item._id} className={styles.item}>
-                                <img
-                                    src={item.image}
-                                    alt=""
-                                    className={styles.item__img}
-                                />
-                                <div className={`${styles.item__price} mt-2`}>
-                                    <span>{item.price}</span>
-                                    <CurrencyIcon type="primary" />
-                                </div>
-                                <div
-                                    className={`${styles.item__description} mt-2`}
-                                >
-                                    {item.name_en}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                    <BurgerContainer items={grouped.sauce} />
                 </div>
 
                 <div className={`${styles.category}`}>
                     <h2 className={`${styles.category__header}`}>Mains</h2>
-
-                    <div
-                        className={`${styles.item__wrapper} mt-6  mb-10 ml-4 mr-4`}
-                    >
-                        {grouped.main.map((item) => (
-                            <div key={item._id} className={styles.item}>
-                                <img
-                                    src={item.image}
-                                    alt=""
-                                    className={styles.item__img}
-                                />
-                                <div className={`${styles.item__price} mt-2`}>
-                                    <span>{item.price}</span>
-                                    <CurrencyIcon type="primary" />
-                                </div>
-                                <div
-                                    className={`${styles.item__description} mt-2`}
-                                >
-                                    {item.name_en}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                    <BurgerContainer items={grouped.main} />
                 </div>
             </div>
         </section>

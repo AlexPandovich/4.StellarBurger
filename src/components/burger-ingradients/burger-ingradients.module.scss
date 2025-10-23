@@ -30,31 +30,3 @@
     }
 }
 
-.item__wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-}
-
-.item {
-    @include outline;
-    &__img {
-        width: 100%;
-        @include outline;
-    }
-    &__price {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-        @include outline;
-        span {
-            font-family: "Iceland";
-            font-size: 28px;
-        }
-    }
-    &__description {
-        text-align: center;
-        @include outline;
-    }
-}
