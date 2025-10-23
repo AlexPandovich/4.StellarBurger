@@ -12,11 +12,6 @@
     }
 }
 
-.tab_wrapper {
-    display: flex;
-    @include outline;
-}
-
 .categories {
     max-height: 693px;
     overflow-y: auto;
