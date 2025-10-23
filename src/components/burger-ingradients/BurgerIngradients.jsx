@@ -117,7 +117,9 @@ class BurgerIngradients extends React.Component {
                     <div className={`${styles.category}`}>
                         <h2 className={`${styles.category__header}`}>Mains</h2>
 
-                        <div className={`${styles.item__wrapper} mt-6  mb-10 `}>
+                        <div
+                            className={`${styles.item__wrapper} mt-6  mb-10 ml-4 mr-4`}
+                        >
                             {grouped.main.map((item) => (
                                 <div key={item._id} className={styles.item}>
                                     <img
