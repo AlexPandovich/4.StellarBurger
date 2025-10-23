@@ -11,43 +11,63 @@ import styles from "./BurgerConstructor.module.scss";
 class BurgerConstructor extends React.Component {
     render() {
         console.log(this.props.ingredients);
+        const top = this.props.ingredients[0];
         return (
-            <div className={`${styles.constructor} pl-4 pr-4`}>
-                <ul
-                    role="list"
-                    className={`${styles.constructor__list} pt-25 pl-4 pr-4`}
+            <div className={`${styles.constructor} pl-4 pr-4 `}>
+                <div
+                    key={top._id}
+                    className={`${styles.constructor__item} ml-15 mr-6`}
                 >
-                    {this.props.ingredients.map((item, index, array) => {
+                    {/* <DragIcon type="primary" className="outline mr-6" /> */}
+                    <ConstructorElement
+                        type="top"
+                        isLocked={true}
+                        text={top.name_en + " (top)"}
+                        price={top.price}
+                        thumbnail={top.image_mobile}
+                    />
+                </div>
+
+                <ul className={`${styles.constructor__list} m-4 pl-4 pr-4`}>
+                    {this.props.ingredients.map((item, index) => {
                         let type;
                         let locked = false;
-                        if (index === 0) {
-                            type = "top";
-                            locked = true;
-                        } else if (index === array.length - 1) {
-                            type = "bottom";
-                            locked = true;
+                        if (item.type !== "bun") {
+                            return (
+                                <li
+                                    key={item._id}
+                                    className={`${styles.constructor__item} `}
+                                >
+                                    <DragIcon
+                                        type="primary"
+                                        className="outline mr-6"
+                                    />
+                                    <ConstructorElement
+                                        type={type}
+                                        isLocked={locked}
+                                        text={item.name_en}
+                                        price={item.price}
+                                        thumbnail={item.image_mobile}
+                                    />
+                                </li>
+                            );
                         }
-
-                        return (
-                            <li
-                                key={item._id}
-                                className={`${styles.constructor__item} `}
-                            >
-                                <DragIcon
-                                    type="primary"
-                                    className="outline mr-6"
-                                />
-                                <ConstructorElement
-                                    type={type}
-                                    isLocked={locked}
-                                    text={item.name_en}
-                                    price={item.price}
-                                    thumbnail={item.image_mobile}
-                                />
-                            </li>
-                        );
+                        return <></>;
                     })}
                 </ul>
+                <div
+                    key={top._id}
+                    className={`${styles.constructor__item} ml-15 mr-6`}
+                >
+                    {/* <DragIcon type="primary" className="outline mr-6" /> */}
+                    <ConstructorElement
+                        type="bottom"
+                        isLocked={true}
+                        text={top.name_en + " (bottom)"}
+                        price={top.price}
+                        thumbnail={top.image_mobile}
+                    />
+                </div>
 
                 <div className={`${styles.total} mt-10 mb-10`}>
                     <div className={`${styles.total__price}`}>
