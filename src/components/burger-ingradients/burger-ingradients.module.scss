@@ -21,11 +21,3 @@
     max-height: 693px;
     overflow-y: auto;
 }
-
-.category {
-    &__header {
-        font-weight: bold;
-        font-size: 24px;
-        @include outline;
-    }
-}

@@ -1,15 +1,12 @@
 import React from "react";
 
-import {
-    Tab,
-    CurrencyIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./burger-ingradients.module.scss";
-import BurgerItem from "./burger-item/burger-item";
-import BurgerContainer from "./buger-container/burger-container";
+
+import BurgerCategory from "./burger-category/burger-category";
 
 const BurgerIngradients = (props) => {
-    const [current, setCurrent] = React.useState("one");
+    const [current, setCurrent] = React.useState("bun");
 
     const grouped = props.ingredients.reduce((acc, item) => {
         acc[item.type] = acc[item.type] || [];
@@ -20,46 +17,35 @@ const BurgerIngradients = (props) => {
     return (
         <section className={`${styles.ingradients} pt-10`}>
             <h1 className={styles.ingradients__header}>Build your burger</h1>
-            <div className={`${styles.tab_wrapper} mt-4`}>
+            <section className={`${styles.tab_wrapper} mt-4`}>
                 <Tab
-                    value="one"
-                    active={current === "one"}
+                    value="bun"
+                    active={current === "bun"}
                     onClick={setCurrent}
                 >
                     Buns
                 </Tab>
                 <Tab
-                    value="two"
-                    active={current === "two"}
+                    value="sauce"
+                    active={current === "sauce"}
                     onClick={setCurrent}
                 >
                     Sauces
                 </Tab>
                 <Tab
-                    value="three"
-                    active={current === "three"}
+                    value="main"
+                    active={current === "main"}
                     onClick={setCurrent}
                 >
                     Mains
                 </Tab>
-            </div>
+            </section>
 
-            <div className={`${styles.categories} pt-10`}>
-                <div className={`${styles.category} `}>
-                    <h2 className={`${styles.category__header}`}>Buns</h2>
-                    <BurgerContainer items={grouped.bun} />
-                </div>
-
-                <div className={`${styles.category}`}>
-                    <h2 className={`${styles.category__header}`}>Sauces</h2>
-                    <BurgerContainer items={grouped.sauce} />
-                </div>
-
-                <div className={`${styles.category}`}>
-                    <h2 className={`${styles.category__header}`}>Mains</h2>
-                    <BurgerContainer items={grouped.main} />
-                </div>
-            </div>
+            <section className={`${styles.categories} pt-10`}>
+                <BurgerCategory items={grouped.bun}>Buns</BurgerCategory>
+                <BurgerCategory items={grouped.sauce}>Sauces</BurgerCategory>
+                <BurgerCategory items={grouped.main}>Mains</BurgerCategory>
+            </section>
         </section>
     );
 };
