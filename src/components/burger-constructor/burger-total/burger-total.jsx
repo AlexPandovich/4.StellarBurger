@@ -7,7 +7,7 @@ import {
 const BurgerTotal = (props) => {
     return (
         <div className={`${styles.total} mt-10 mb-10`}>
-            <div className={`${styles.total__price}`}>
+            <div className={`${styles.total__price} mr-10`}>
                 <span>610</span>
                 <CurrencyIcon type="primary" />
             </div>
@@ -15,7 +15,7 @@ const BurgerTotal = (props) => {
                 htmlType="button"
                 type="primary"
                 size="medium"
-                extraClass={styles.button_width}
+                extraClass={styles.order_button}
             >
                 Order
             </Button>

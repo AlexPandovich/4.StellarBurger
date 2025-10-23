@@ -1,7 +1,7 @@
 @use "styles/variables.scss" as *;
 
 header {
-    border: 1px solid $border-color;
+    @include outline;
     background-color: $header_bg;
 
     .button_wrapper {
