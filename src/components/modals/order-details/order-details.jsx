@@ -1,8 +1,8 @@
 import withModal from "../hocs/modal/with-modal";
-import styles from "./order-accepted.module.scss";
+import styles from "./order-details.module.scss";
 import orderReadyImg from "../../../images/done.png";
 
-const OrderAccepted = ({ item }) => {
+const OrderDetails = ({ item }) => {
     return (
         <section className={`${styles.order} pt-8 pb-30 pl-25 pr-25`}>
             <div className={styles.order__number}>034536</div>
@@ -25,6 +25,6 @@ const OrderAccepted = ({ item }) => {
     );
 };
 
-const OrderAcceptedModal = withModal(OrderAccepted);
+const OrderDetailsModal = withModal(OrderDetails);
 
-export default OrderAcceptedModal;
+export default OrderDetailsModal;

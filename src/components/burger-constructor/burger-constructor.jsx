@@ -2,7 +2,7 @@ import styles from "./burger-constructor.module.scss";
 import BurgerConstructorList from "./burger-constructor-list/burger-constructor-list";
 import BurgerTotal from "./burger-total/burger-total";
 import { useState } from "react";
-import OrderAcceptedModal from "components/modals/order-accepted/order-accepted";
+import OrderDetailsModal from "components/modals/order-details/order-details";
 
 const BurgerConstructor = (props) => {
     const [orderReady, setShowOrderReady] = useState(false);
@@ -23,7 +23,7 @@ const BurgerConstructor = (props) => {
 
                 <BurgerTotal onOrderReady={onOrderReady} />
             </section>
-            {orderReady && <OrderAcceptedModal onClose={onClose} />}
+            {orderReady && <OrderDetailsModal onClose={onClose} />}
         </>
     );
 };
