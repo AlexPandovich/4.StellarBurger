@@ -1,0 +1,9 @@
+@use "styles/variables.scss" as *;
+
+.category {
+    &__header {
+        font-weight: bold;
+        font-size: 24px;
+        @include outline;
+    }
+}

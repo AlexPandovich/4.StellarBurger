@@ -1,0 +1,24 @@
+@use "styles/variables.scss" as *;
+
+.constructor {
+    @include outline;
+    padding-top: 61px;
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding-left: 10px;
+        max-height: 450px;
+        overflow-y: auto;
+        list-style-type: none;
+        padding-inline: 0;
+    }
+    &__item {
+        display: flex;
+        align-items: center;
+    }
+    &__fixed_item {
+        margin-left: 63px;
+        margin-right: 29px;
+    }
+}

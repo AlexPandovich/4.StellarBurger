@@ -1,0 +1,35 @@
+@use "styles/variables.scss" as *;
+
+.ingradient {
+    width: 540px;
+    margin: 0 auto;
+    @include outline;
+    img {
+        margin: 0 auto;
+        @include outline;
+    }
+    &__text {
+        text-align: center;
+        font-size: 24px;
+    }
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        @include outline;
+    }
+
+    &_item {
+        color: var(--text-inactive-color);
+        @include outline;
+    }
+    &__header {
+        text-align: center;
+    }
+    &__value {
+        text-align: center;
+        font-size: 28px;
+        @include fontIceland;
+    }
+}

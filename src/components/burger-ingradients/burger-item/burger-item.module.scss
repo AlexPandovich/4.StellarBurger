@@ -1,0 +1,25 @@
+@use "styles/variables.scss" as *;
+
+.item {
+    @include outline;
+    position: relative;
+    &__img {
+        margin: 0 auto;
+        @include outline;
+    }
+    &__price {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        @include outline;
+        span {
+            @include fontIceland;
+            font-size: 28px;
+        }
+    }
+    &__description {
+        text-align: center;
+        @include outline;
+    }
+}

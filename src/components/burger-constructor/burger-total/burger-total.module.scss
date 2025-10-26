@@ -1,0 +1,22 @@
+@use "styles/variables.scss" as *;
+
+.total {
+    @include outline;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    &__price {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        span {
+            font-family: "Iceland";
+            font-size: 48px;
+        }
+    }
+}
+.order_button {
+    width: 215px;
+    height: 64px;
+    margin-right: 33px;
+}
