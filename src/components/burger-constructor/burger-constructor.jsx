@@ -3,6 +3,7 @@ import BurgerConstructorList from "./burger-constructor-list/burger-constructor-
 import BurgerTotal from "./burger-total/burger-total";
 import { useState } from "react";
 import OrderDetailsModal from "components/modals/order-details/order-details";
+import React from "react";
 
 const BurgerConstructor = (props) => {
     const [orderReady, setShowOrderReady] = useState(false);
@@ -28,4 +29,4 @@ const BurgerConstructor = (props) => {
     );
 };
 
-export default BurgerConstructor;
+export default React.memo(BurgerConstructor);

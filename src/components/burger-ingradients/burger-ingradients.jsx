@@ -43,4 +43,4 @@ const BurgerIngradients = (props) => {
     );
 };
 
-export default BurgerIngradients;
+export default React.memo(BurgerIngradients);

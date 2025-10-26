@@ -3,6 +3,7 @@ import {
     CurrencyIcon,
     Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import React from "react";
 
 const BurgerTotal = (props) => {
     return (
@@ -25,4 +26,4 @@ const BurgerTotal = (props) => {
         </div>
     );
 };
-export default BurgerTotal;
+export default React.memo(BurgerTotal);

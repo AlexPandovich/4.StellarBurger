@@ -1,5 +1,6 @@
 import BurgerContainer from "../buger-container/burger-container";
 import styles from "./burger-category.module.scss";
+import React from "react";
 
 const BurgerCategory = (props) => {
     return (
@@ -11,4 +12,4 @@ const BurgerCategory = (props) => {
         </div>
     );
 };
-export default BurgerCategory;
+export default React.memo(BurgerCategory);

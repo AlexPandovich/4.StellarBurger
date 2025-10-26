@@ -1,5 +1,6 @@
 import styles from "./burger-tabs.module.scss";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+import React from "react";
 
 const BurgerTabs = (props) => {
     return (
@@ -29,4 +30,4 @@ const BurgerTabs = (props) => {
     );
 };
 
-export default BurgerTabs;
+export default React.memo(BurgerTabs);

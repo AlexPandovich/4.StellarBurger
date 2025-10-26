@@ -2,7 +2,7 @@ import styles from "./burger-container.module.scss";
 import BurgerItem from "../burger-item/burger-item";
 import { useState } from "react";
 import IngradientDetailsModal from "components/modals/ingradient-details/ingradient-details";
-
+import React from "react";
 const BurgerContainer = (props) => {
     const [showModal, setShowModal] = useState(false);
     const [detailedItem, setDetailedItem] = useState(null);
@@ -47,4 +47,4 @@ const BurgerContainer = (props) => {
     );
 };
 
-export default BurgerContainer;
+export default React.memo(BurgerContainer);

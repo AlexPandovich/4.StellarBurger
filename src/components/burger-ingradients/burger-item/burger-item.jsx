@@ -3,6 +3,7 @@ import {
     CurrencyIcon,
     Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import React from "react";
 
 const BurgerItem = (props) => {
     const item = props.item;
@@ -21,4 +22,4 @@ const BurgerItem = (props) => {
     );
 };
 
-export default BurgerItem;
+export default React.memo(BurgerItem);

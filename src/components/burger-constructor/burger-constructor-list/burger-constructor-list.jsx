@@ -3,6 +3,7 @@ import {
     DragIcon,
     ConstructorElement,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import React from "react";
 
 const BurgerConstructorList = (props) => {
     const fixedBun = props.ingredients[props.bunIndex];
@@ -66,4 +67,4 @@ const BurgerConstructorList = (props) => {
     );
 };
 
-export default BurgerConstructorList;
+export default React.memo(BurgerConstructorList);
