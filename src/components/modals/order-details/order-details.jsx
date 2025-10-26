@@ -1,6 +1,6 @@
 import withModal from "../hocs/modal/with-modal";
 import styles from "./order-details.module.scss";
-import orderReadyImg from "../../../images/done.png";
+import orderReadyImg from "../../../images/modals/done.png";
 
 const OrderDetails = ({ item }) => {
     return (

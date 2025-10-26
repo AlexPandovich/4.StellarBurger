@@ -1,5 +1,5 @@
 import styles from "./with-modal.module.scss";
-import modalCrossImg from "../../../../images/modal-cross.png";
+import modalCrossImg from "../../../../images/modals/modal-cross.png";
 import withModalOverlay from "../modal-overlay/with-modal-overlay";
 
 const withModal = (WrappedComponent) => {
