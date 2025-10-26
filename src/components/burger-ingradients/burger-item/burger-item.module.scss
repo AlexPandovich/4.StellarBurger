@@ -14,7 +14,7 @@
         gap: 8px;
         @include outline;
         span {
-            font-family: "Iceland";
+            @include fontIceland;
             font-size: 28px;
         }
     }

@@ -7,7 +7,7 @@ import {
 const BurgerItem = (props) => {
     const item = props.item;
     return (
-        <div className={styles.item}>
+        <div className={styles.item} onClick={(e) => props.onClick(e, item)}>
             <img src={item.image} alt="" className={styles.item__img} />
             <div className={`${styles.item__price} mt-2`}>
                 <span>{item.price}</span>

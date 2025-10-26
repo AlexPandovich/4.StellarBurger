@@ -1,0 +1,18 @@
+@use "styles/variables.scss" as *;
+
+.modal {
+    width: 720px;
+    @include outline;
+    background-color: var(--background);
+    border-radius: 10px;
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+    .title__wrapper {
+        margin: 0 auto;
+    }
+    &__cross {
+        cursor: pointer;
+    }
+}
