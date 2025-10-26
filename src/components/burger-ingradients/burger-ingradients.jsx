@@ -6,7 +6,15 @@ import BurgerCategory from "./burger-category/burger-category";
 import BurgerTabs from "./burger-tabs/burger-tabs";
 
 const BurgerIngradients = (props) => {
-    const [current, setCurrent] = React.useState("bun");
+    const [activeTab, setActiveTab] = React.useState("bun");
+
+    const onTabClick = (activeTab) => {
+        setActiveTab(activeTab);
+        const element = document.getElementById(activeTab);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+    };
 
     const grouped = props.ingredients.reduce((acc, item) => {
         acc[item.type] = acc[item.type] || [];
@@ -18,12 +26,18 @@ const BurgerIngradients = (props) => {
         <section className={`${styles.ingradients} pt-10`}>
             <h1 className={styles.ingradients__header}>Build your burger</h1>
 
-            <BurgerTabs current={current} onClick={setCurrent} />
+            <BurgerTabs current={activeTab} onClick={onTabClick} />
 
             <section className={`${styles.categories} pt-10`}>
-                <BurgerCategory items={grouped.bun}>Buns</BurgerCategory>
-                <BurgerCategory items={grouped.sauce}>Sauces</BurgerCategory>
-                <BurgerCategory items={grouped.main}>Mains</BurgerCategory>
+                <BurgerCategory id="bun" items={grouped.bun}>
+                    Buns
+                </BurgerCategory>
+                <BurgerCategory id="sauce" items={grouped.sauce}>
+                    Sauces
+                </BurgerCategory>
+                <BurgerCategory id="main" items={grouped.main}>
+                    Mains
+                </BurgerCategory>
             </section>
         </section>
     );
