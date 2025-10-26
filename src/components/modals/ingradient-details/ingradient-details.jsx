@@ -2,7 +2,7 @@ import withModal from "../hocs/modal/with-modal";
 import styles from "./ingradient-details.module.scss";
 
 const IngradientDetails = ({ item }) => {
-    console.log(item);
+
     return (
         <div className={styles.ingradient}>
             <img src={item.image_large} alt="" />

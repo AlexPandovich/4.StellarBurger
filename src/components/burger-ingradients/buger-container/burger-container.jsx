@@ -5,7 +5,7 @@ import IngradientDetailsModal from "components/modals/ingradient-details/ingradi
 
 const BurgerContainer = (props) => {
     const [showModal, setShowModal] = useState(false);
-    const [detailedItem, setDetailedItem] = useState();
+    const [detailedItem, setDetailedItem] = useState(null);
 
     const onClose = (e) => {
         setShowModal(false);

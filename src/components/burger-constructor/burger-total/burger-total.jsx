@@ -11,14 +11,17 @@ const BurgerTotal = (props) => {
                 <span>610</span>
                 <CurrencyIcon type="primary" />
             </div>
-            <Button
-                htmlType="button"
-                type="primary"
-                size="medium"
-                extraClass={styles.order_button}
-            >
-                Order
-            </Button>
+            <div>
+                <Button
+                    htmlType="button"
+                    type="primary"
+                    size="medium"
+                    onClick={props.onOrderReady}
+                    extraClass={styles.order_button}
+                >
+                    Order
+                </Button>
+            </div>
         </div>
     );
 };
