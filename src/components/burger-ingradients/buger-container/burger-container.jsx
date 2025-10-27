@@ -4,18 +4,15 @@ import { useState } from "react";
 import IngradientDetailsModal from "components/modals/ingradient-details/ingradient-details";
 import React from "react";
 const BurgerContainer = (props) => {
-    const [showModal, setShowModal] = useState(false);
     const [detailedItem, setDetailedItem] = useState(null);
 
-    const onClose = (e) => {
-        setShowModal(false);
+    const onClose = React.useCallback((e) => {
         setDetailedItem(null);
-    };
+    }, []);
 
-    const onItemClick = (e, item) => {
-        setShowModal(true);
+    const onItemClick = React.useCallback((e, item) => {
         setDetailedItem(item);
-    };
+    }, []);
 
     return (
         <>
@@ -40,7 +37,7 @@ const BurgerContainer = (props) => {
                 })}
             </div>
 
-            {showModal && (
+            {detailedItem != null && (
                 <IngradientDetailsModal onClose={onClose} item={detailedItem} />
             )}
         </>

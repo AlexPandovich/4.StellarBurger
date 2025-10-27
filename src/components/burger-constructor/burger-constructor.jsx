@@ -7,24 +7,26 @@ import React from "react";
 
 const BurgerConstructor = (props) => {
     const [orderReady, setShowOrderReady] = useState(false);
-    const onClose = (e) => {
+
+    const onOrderDetailsClose = React.useCallback((e) => {
         setShowOrderReady(false);
-    };
-    const onOrderReady = () => {
+    }, []);
+
+    const onOrderReady = React.useCallback(() => {
         setShowOrderReady(true);
-    };
+    }, []);
+
     return (
         <>
             <section className={`${styles.constructor} pl-4 pr-4 `}>
                 <BurgerConstructorList
                     ingredients={props.ingredients}
                     bunIndex={0}
-                    onOrderReady={onOrderReady}
                 />
 
                 <BurgerTotal onOrderReady={onOrderReady} />
             </section>
-            {orderReady && <OrderDetailsModal onClose={onClose} />}
+            {orderReady && <OrderDetailsModal onClose={onOrderDetailsClose} />}
         </>
     );
 };
