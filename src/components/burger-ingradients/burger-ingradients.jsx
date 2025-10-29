@@ -5,6 +5,26 @@ import styles from "./burger-ingradients.module.scss";
 import BurgerCategory from "./burger-category/burger-category";
 import BurgerTabs from "./burger-tabs/burger-tabs";
 
+export function handleScroll(e, refs, categories, setActiveTab) {
+    const sectionPosition = e.target.getBoundingClientRect();
+
+    const refsDistances = refs.map((ref) => {
+        const rect = ref.current?.getBoundingClientRect();
+        if (!rect) return Infinity;
+        const dx = rect.left - sectionPosition.left;
+        const dy = rect.top - sectionPosition.top;
+        return Math.sqrt(dx * dx + dy * dy);
+    });
+
+    const minIndex = refsDistances.reduce(
+        (minIdx, currentDistance, currentIndex, array) =>
+            currentDistance < array[minIdx] ? currentIndex : minIdx,
+        0
+    );
+
+    setActiveTab(categories[minIndex]);
+}
+
 const BurgerIngradients = (props) => {
     const [activeTab, setActiveTab] = React.useState("bun");
 
@@ -13,34 +33,10 @@ const BurgerIngradients = (props) => {
     const headerMainRef = useRef(null);
 
     const onScroll = (e) => {
-        const sectionPosition = {
-            left: e.target.getBoundingClientRect().left,
-            top: e.target.getBoundingClientRect().top,
-        };
-
         const refs = [headerBunRef, headerSauceRef, headerMainRef];
         const categories = ["bun", "sauce", "main"];
-        const refsPositions = refs.map((item) => {
-            return {
-                left: item.current.getBoundingClientRect().left,
-                top: item.current.getBoundingClientRect().top,
-            };
-        });
 
-        const refsDistances = refsPositions.map((position) => {
-            const dx = position.left - sectionPosition.left;
-            const dy = position.top - sectionPosition.top;
-            return Math.sqrt(dx * dx + dy * dy);
-        });
-
-        const minIndex = refsDistances.reduce(
-            (minIdx, currentDistance, currentIndex, array) => {
-                return currentDistance < array[minIdx] ? currentIndex : minIdx;
-            },
-            0
-        );
-
-        setActiveTab(categories[minIndex]);
+        handleScroll(e, refs, categories, setActiveTab);
     };
 
     const onTabClick = React.useCallback((activeTab) => {
