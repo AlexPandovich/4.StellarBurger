@@ -4,6 +4,8 @@ import { useEffect } from "react";
 const modalRoot = document.getElementById("react-modals");
 
 const withModalOverlay = (WrappedComponent) => (props) => {
+    const { onClose } = props;
+
     useEffect(() => {
         const handleKey = (e) => {
             if (e.key === "Escape") {
@@ -13,7 +15,7 @@ const withModalOverlay = (WrappedComponent) => (props) => {
 
         document.addEventListener("keydown", handleKey);
         return () => document.removeEventListener("keydown", handleKey);
-    }, [props.onClose]);
+    }, [onClose]);
 
     return ReactDOM.createPortal(
         <div className={styles.overlay} onClick={props.onClose}>
