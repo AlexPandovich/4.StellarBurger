@@ -12,7 +12,7 @@ const BurgerConstructor = (props) => {
         setShowOrderReady(false);
     }, []);
 
-    const onOrderReady = React.useCallback(() => {
+    const onOrderDetailsShow = React.useCallback(() => {
         setShowOrderReady(true);
     }, []);
 
@@ -24,7 +24,7 @@ const BurgerConstructor = (props) => {
                     bunIndex={0}
                 />
 
-                <BurgerTotal onOrderReady={onOrderReady} />
+                <BurgerTotal onOrderReady={onOrderDetailsShow} />
             </section>
             {orderReady && <OrderDetailsModal onClose={onOrderDetailsClose} />}
         </>
