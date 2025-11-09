@@ -2,8 +2,9 @@
 
 .item {
     @include outline;
+    position: relative;
     &__img {
-        width: 100%;
+        margin: 0 auto;
         @include outline;
     }
     &__price {
@@ -13,7 +14,7 @@
         gap: 8px;
         @include outline;
         span {
-            font-family: "Iceland";
+            @include fontIceland;
             font-size: 28px;
         }
     }

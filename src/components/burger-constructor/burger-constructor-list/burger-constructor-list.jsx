@@ -3,6 +3,7 @@ import {
     DragIcon,
     ConstructorElement,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import React from "react";
 
 const BurgerConstructorList = (props) => {
     const fixedBun = props.ingredients[props.bunIndex];
@@ -23,28 +24,31 @@ const BurgerConstructorList = (props) => {
             </div>
 
             <ul className={`${styles.constructor__list} m-4 pl-4 pr-4`}>
-                {props.ingredients.map((item, index) => {
-                    if (item.type !== "bun") {
-                        return (
-                            <li
-                                key={item._id}
-                                className={`${styles.constructor__item} `}
-                            >
-                                <DragIcon
-                                    type="primary"
-                                    className="outline mr-6"
-                                />
-                                <ConstructorElement
-                                    type={undefined}
-                                    isLocked={false}
-                                    text={item.name_en}
-                                    price={item.price}
-                                    thumbnail={item.image_mobile}
-                                />
-                            </li>
-                        );
-                    }
-                })}
+                {
+                    // eslint-disable-next-line
+                    props.ingredients.map((item) => {
+                        if (item.type !== "bun") {
+                            return (
+                                <li
+                                    key={item._id}
+                                    className={`${styles.constructor__item} `}
+                                >
+                                    <DragIcon
+                                        type="primary"
+                                        className="outline mr-6"
+                                    />
+                                    <ConstructorElement
+                                        type={undefined}
+                                        isLocked={false}
+                                        text={item.name_en}
+                                        price={item.price}
+                                        thumbnail={item.image_mobile}
+                                    />
+                                </li>
+                            );
+                        }
+                    })
+                }
             </ul>
 
             <div
@@ -63,4 +67,4 @@ const BurgerConstructorList = (props) => {
     );
 };
 
-export default BurgerConstructorList;
+export default React.memo(BurgerConstructorList);
