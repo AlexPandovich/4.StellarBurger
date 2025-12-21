@@ -1,68 +1,19 @@
-import styles from "./burger-constructor-list.module.scss";
-import {
-    DragIcon,
-    ConstructorElement,
-} from "@ya.praktikum/react-developer-burger-ui-components";
 import React from "react";
 
+import { useSelector } from "react-redux";
+import BurgerBun from "./burger-bun";
+import BurgerIngradientsList from "./burger-ingredients-list";
+
 const BurgerConstructorList = (props) => {
-    const fixedBun = props.ingredients[props.bunIndex];
+    const { constrIngredients, bun } = useSelector(
+        (state) => state.сonstructor
+    );
 
     return (
         <>
-            <div
-                className={`${styles.constructor__item} ${styles.constructor__fixed_item} `}
-            >
-                {/* <DragIcon type="primary" className="outline mr-6" /> */}
-                <ConstructorElement
-                    type="top"
-                    isLocked={true}
-                    text={fixedBun.name_en + " (top)"}
-                    price={fixedBun.price}
-                    thumbnail={fixedBun.image_mobile}
-                />
-            </div>
-
-            <ul className={`${styles.constructor__list} m-4 pl-4 pr-4`}>
-                {
-                    // eslint-disable-next-line
-                    props.ingredients.map((item) => {
-                        if (item.type !== "bun") {
-                            return (
-                                <li
-                                    key={item._id}
-                                    className={`${styles.constructor__item} `}
-                                >
-                                    <DragIcon
-                                        type="primary"
-                                        className="outline mr-6"
-                                    />
-                                    <ConstructorElement
-                                        type={undefined}
-                                        isLocked={false}
-                                        text={item.name_en}
-                                        price={item.price}
-                                        thumbnail={item.image_mobile}
-                                    />
-                                </li>
-                            );
-                        }
-                    })
-                }
-            </ul>
-
-            <div
-                className={`${styles.constructor__item} ${styles.constructor__fixed_item} `}
-            >
-                {/* <DragIcon type="primary" className="outline mr-6" /> */}
-                <ConstructorElement
-                    type="bottom"
-                    isLocked={true}
-                    text={fixedBun.name_en + " (bottom)"}
-                    price={fixedBun.price}
-                    thumbnail={fixedBun.image_mobile}
-                />
-            </div>
+            <BurgerBun bun={bun} type="top" />
+            <BurgerIngradientsList ingredients={constrIngredients} />
+            <BurgerBun bun={bun} type="bottom" />
         </>
     );
 };

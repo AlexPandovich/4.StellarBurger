@@ -1,9 +1,10 @@
 import React, { useRef } from "react";
 
-import styles from "./burger-ingradients.module.scss";
+import styles from "./burger-ingredients.module.scss";
 
 import BurgerCategory from "./burger-category/burger-category";
 import BurgerTabs from "./burger-tabs/burger-tabs";
+import { useSelector } from "react-redux";
 
 export function handleScroll(e, refs, categories, setActiveTab) {
     const sectionPosition = e.target.getBoundingClientRect();
@@ -25,8 +26,9 @@ export function handleScroll(e, refs, categories, setActiveTab) {
     setActiveTab(categories[minIndex]);
 }
 
-const BurgerIngradients = (props) => {
+const BurgerIngredients = () => {
     const [activeTab, setActiveTab] = React.useState("bun");
+    const ingredients = useSelector((state) => state.ingredients.ingredients);
 
     const headerBunRef = useRef(null);
     const headerSauceRef = useRef(null);
@@ -48,16 +50,16 @@ const BurgerIngradients = (props) => {
     }, []);
 
     const grouped = React.useMemo(() => {
-        return props.ingredients.reduce((acc, item) => {
+        return ingredients.reduce((acc, item) => {
             acc[item.type] = acc[item.type] || [];
             acc[item.type].push(item);
             return acc;
         }, {});
-    }, [props]);
+    }, [ingredients]);
 
     return (
-        <section className={`${styles.ingradients} pt-10`}>
-            <h1 className={styles.ingradients__header}>Build your burger</h1>
+        <section className={`${styles.ingredients} pt-10`}>
+            <h1 className={styles.ingredients__header}>Build your burger</h1>
 
             <BurgerTabs current={activeTab} onClick={onTabClick} />
 
@@ -91,4 +93,4 @@ const BurgerIngradients = (props) => {
     );
 };
 
-export default React.memo(BurgerIngradients);
+export default React.memo(BurgerIngredients);

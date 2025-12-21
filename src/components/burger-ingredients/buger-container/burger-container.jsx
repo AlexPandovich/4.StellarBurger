@@ -1,10 +1,15 @@
 import styles from "./burger-container.module.scss";
 import BurgerItem from "../burger-item/burger-item";
 import { useState } from "react";
-import IngradientDetailsModal from "components/modals/ingradient-details/ingradient-details";
+import IngradientDetailsModal from "components/modals/ingredient-details/ingredient-details";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addIngredient } from "services/constructor/actions";
+import { useSelector } from "react-redux";
 const BurgerContainer = (props) => {
     const [detailedItem, setDetailedItem] = useState(null);
+    const dispatcher = useDispatch();
+    const { ingredientsCount } = useSelector((state) => state.сonstructor);
 
     const onClose = React.useCallback((e) => {
         setDetailedItem(null);
@@ -14,18 +19,20 @@ const BurgerContainer = (props) => {
         setDetailedItem(item);
     }, []);
 
+    const onAddIngredient = React.useCallback((e, item) => {
+        e.preventDefault();
+        dispatcher(addIngredient(item));
+        onClose(e);
+    }, []);
+
     return (
         <>
             <div
                 className={`${styles.burger__container} mt-6  mb-10 ml-4 mr-4`}
             >
-                {props.items.map((item, id) => {
-                    let count = 0;
-                    if (id === 0 || id === 3) {
-                        count = 2;
-                    } else {
-                        count = 0;
-                    }
+                {props.items.map((item) => {
+                    const count = ingredientsCount.get(item._id) || 0;
+
                     return (
                         <BurgerItem
                             key={item._id}
@@ -38,7 +45,11 @@ const BurgerContainer = (props) => {
             </div>
 
             {detailedItem != null && (
-                <IngradientDetailsModal onClose={onClose} item={detailedItem} />
+                <IngradientDetailsModal
+                    onClose={onClose}
+                    item={detailedItem}
+                    onAddIngredient={onAddIngredient}
+                />
             )}
         </>
     );

@@ -2,8 +2,7 @@ import React from "react";
 import "./App.scss";
 import AppHeader from "../app-header/AppHeader";
 import BurgerConstructor from "components/burger-constructor/burger-constructor";
-import BurgerIngradients from "components/burger-ingradients/burger-ingradients";
-import { ingredients } from "utils/data";
+import BurgerIngredients from "components/burger-ingredients/burger-ingredients";
 
 class App extends React.Component {
     render() {
@@ -12,8 +11,8 @@ class App extends React.Component {
                 <AppHeader />
                 <div className="container">
                     <main className="main-content">
-                        <BurgerIngradients ingredients={ingredients} />
-                        <BurgerConstructor ingredients={ingredients} />
+                        <BurgerIngredients />
+                        <BurgerConstructor />
                     </main>
                 </div>
             </>
