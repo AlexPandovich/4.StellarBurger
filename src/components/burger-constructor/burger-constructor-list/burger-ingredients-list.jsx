@@ -15,7 +15,9 @@ const BurgerIngradientsList = (props) => {
                 <div
                     className={`${styles.constructor__item} ${styles.constructor__fixed_item} m-4`}
                 >
-                    <EmptyConstructorElement />
+                    <EmptyConstructorElement>
+                        Drag Ingredients{" "}
+                    </EmptyConstructorElement>
                 </div>
             ) : (
                 <ul className={`${styles.constructor__list} m-4 pl-4 pr-4`}>
@@ -23,7 +25,7 @@ const BurgerIngradientsList = (props) => {
                         if (item.type !== "bun") {
                             return (
                                 <li
-                                    key={item.uniqueKey}
+                                    // key={item.uniqueKey}
                                     className={`${styles.constructor__item} `}
                                 >
                                     <DragIcon

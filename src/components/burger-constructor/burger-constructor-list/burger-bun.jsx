@@ -4,7 +4,6 @@ import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-comp
 import React from "react";
 
 const BurgerBun = (props) => {
-    
     return (
         <div
             className={`${styles.constructor__item} ${styles.constructor__fixed_item} `}
@@ -18,7 +17,9 @@ const BurgerBun = (props) => {
                     thumbnail={props.bun.image_mobile}
                 />
             ) : (
-                <EmptyConstructorElement type={props.type} />
+                <EmptyConstructorElement type={props.type}>
+                    Drag Bun
+                </EmptyConstructorElement>
             )}
         </div>
     );
