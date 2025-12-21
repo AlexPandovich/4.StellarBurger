@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import BurgerBun from "./burger-bun";
 import BurgerIngradientsList from "./burger-ingredients-list";
 
-const BurgerConstructorList = (props) => {
+const BurgerConstructorList = () => {
     const { constrIngredients, bun } = useSelector(
         (state) => state.сonstructor
     );

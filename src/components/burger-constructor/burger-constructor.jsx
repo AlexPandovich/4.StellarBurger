@@ -19,11 +19,7 @@ const BurgerConstructor = (props) => {
     return (
         <>
             <section className={`${styles.constructor} pl-4 pr-4 `}>
-                <BurgerConstructorList
-                    ingredients={props.ingredients}
-                    bunIndex={0}
-                />
-
+                <BurgerConstructorList />
                 <BurgerTotal onOrderReady={onOrderDetailsShow} />
             </section>
             {orderReady && <OrderDetailsModal onClose={onOrderDetailsClose} />}
