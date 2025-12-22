@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
+import React, { useMemo, useRef } from "react";
 
 import styles from "./burger-ingredients.module.scss";
 
 import BurgerCategory from "./burger-category/burger-category";
 import BurgerTabs from "./burger-tabs/burger-tabs";
 import { useSelector } from "react-redux";
+import { Loader } from "components/ui/loader/loader";
 
 export function handleScroll(e, refs, categories, setActiveTab) {
     const sectionPosition = e.target.getBoundingClientRect();
@@ -28,7 +29,9 @@ export function handleScroll(e, refs, categories, setActiveTab) {
 
 const BurgerIngredients = () => {
     const [activeTab, setActiveTab] = React.useState("bun");
-    const ingredients = useSelector((state) => state.ingredients.ingredients);
+    const { ingredients, ingredientsRequest } = useSelector(
+        (state) => state.ingredients
+    );
 
     const headerBunRef = useRef(null);
     const headerSauceRef = useRef(null);
@@ -50,19 +53,19 @@ const BurgerIngredients = () => {
     }, []);
 
     const grouped = React.useMemo(() => {
-        return ingredients.reduce((acc, item) => {
-            acc[item.type] = acc[item.type] || [];
-            acc[item.type].push(item);
-            return acc;
-        }, {});
+        if (ingredients) {
+            return ingredients.reduce((acc, item) => {
+                acc[item.type] = acc[item.type] || [];
+                acc[item.type].push(item);
+                return acc;
+            }, {});
+        } else {
+            return {};
+        }
     }, [ingredients]);
 
-    return (
-        <section className={`${styles.ingredients} pt-10`}>
-            <h1 className={styles.ingredients__header}>Build your burger</h1>
-
-            <BurgerTabs current={activeTab} onClick={onTabClick} />
-
+    const content = useMemo(() => {
+        return !ingredientsRequest ? (
             <section
                 onScroll={onScroll}
                 className={`${styles.categories} pt-10`}
@@ -89,6 +92,16 @@ const BurgerIngredients = () => {
                     Mains
                 </BurgerCategory>
             </section>
+        ) : (
+            <Loader size="large" />
+        );
+    }, [grouped, ingredientsRequest]);
+
+    return (
+        <section className={`${styles.ingredients} pt-10`}>
+            <h1 className={styles.ingredients__header}>Build your burger</h1>
+            <BurgerTabs current={activeTab} onClick={onTabClick} />
+            {content}
         </section>
     );
 };

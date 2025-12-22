@@ -30,18 +30,19 @@ const BurgerContainer = (props) => {
             <div
                 className={`${styles.burger__container} mt-6  mb-10 ml-4 mr-4`}
             >
-                {props.items.map((item) => {
-                    const count = ingredientsCount.get(item._id) || 0;
+                {props.items &&
+                    props.items.map((item) => {
+                        const count = ingredientsCount.get(item._id) || 0;
 
-                    return (
-                        <BurgerItem
-                            key={item._id}
-                            item={item}
-                            count={count}
-                            onClick={onItemClick}
-                        />
-                    );
-                })}
+                        return (
+                            <BurgerItem
+                                key={item._id}
+                                item={item}
+                                count={count}
+                                onClick={onItemClick}
+                            />
+                        );
+                    })}
             </div>
 
             {detailedItem != null && (

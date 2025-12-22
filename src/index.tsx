@@ -17,7 +17,8 @@ const store = configureStore({
         constrIngredients: [],
     },
     ingredients: {
-        ingredients: burgerIngredients,
+        ingredients: [],
+        ingredientsRequest: false,
     },
 });
 
