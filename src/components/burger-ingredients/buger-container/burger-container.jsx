@@ -33,7 +33,7 @@ const BurgerContainer = (props) => {
             >
                 {props.items &&
                     props.items.map((item) => {
-                        const count = ingredientsCount.get(item._id) || 0;
+                        const count = ingredientsCount[item._id] || 0;
 
                         return (
                             <BurgerItem

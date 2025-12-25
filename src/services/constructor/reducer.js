@@ -4,28 +4,28 @@ import { v4 as uuidv4 } from "uuid";
 const initialState = {
     bun: null,
     constrIngredients: [],
-    ingredientsCount: new Map(),
+    ingredientsCount: {},
 };
 
-function addToIngredientsCountMap(countMap, ingredient) {
+function addToIngredientsCountMap(countObj, ingredient) {
     const id = ingredient._id;
     if (ingredient.type === "bun") {
-        countMap.set(id, (countMap.get(id) || 0) + 2);
+        countObj[id] = (countObj[id] || 0) + 2;
     } else {
-        countMap.set(id, (countMap.get(id) || 0) + 1);
+        countObj[id] = (countObj[id] || 0) + 1;
     }
 }
 
-function deleteFromIngredientsCountMap(countMap, ingredient) {
+function deleteFromIngredientsCountMap(countObj, ingredient) {
     const id = ingredient._id;
-    if (countMap.has(id)) {
-        const current = countMap.get(id);
+    if (countObj.has(id)) {
+        const current = countObj.get(id);
         if (ingredient.type === "bun") {
-            countMap.delete(id);
+            delete countObj[id];
         } else if (current > 1) {
-            countMap.set(id, current - 1);
+            countObj[id] = countObj[id] - 1;
         } else {
-            countMap.delete(id);
+            delete countObj[id];
         }
     }
 }

@@ -11,15 +11,13 @@ const root = ReactDOM.createRoot(
 );
 
 const store = createStore({
-    preloadedState: {
-        constructor: {
-            bun: null,
-            constrIngredients: [],
-        },
-        ingredients: {
-            ingredients: [],
-            ingredientsRequest: false,
-        },
+    constructor: {
+        bun: null,
+        constrIngredients: [],
+    },
+    ingredients: {
+        ingredients: [],
+        ingredientsRequest: false,
     },
 });
 

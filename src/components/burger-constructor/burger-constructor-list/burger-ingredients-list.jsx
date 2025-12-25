@@ -25,7 +25,7 @@ const BurgerIngradientsList = (props) => {
                         if (item.type !== "bun") {
                             return (
                                 <li
-                                    // key={item.uniqueKey}
+                                    key={item.uniqueKey}
                                     className={`${styles.constructor__item} `}
                                 >
                                     <DragIcon
