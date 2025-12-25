@@ -1,9 +1,5 @@
-import { act } from "react";
-import {
-    GET_INGREDIENTS_FAILED,
-    GET_INGREDIENTS_REQUEST,
-    GET_INGREDIENTS_SUCCESS,
-} from "./actions";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchIngredients } from "./actions";
 
 const initialState = {
     ingredients: [],
@@ -11,29 +7,25 @@ const initialState = {
     ingredientsFailed: false,
 };
 
-export const ingredientsReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case GET_INGREDIENTS_REQUEST:
-            console.log("load")
-            return {
-                ...state,
-                ingredientsRequest: true,
-            };
-        case GET_INGREDIENTS_FAILED:
-            return {
-                ...state,
-                ingredientsRequest: false,
-                ingredientsFailed: true,
-            };
-        case GET_INGREDIENTS_SUCCESS:
-            console.log("data loaded");
-            return {
-                ...state,
-                ingredientsRequest: false,
-                ingredientsFailed: false,
-                ingredients: action.items,
-            };
-        default:
-            return state;
-    }
-};
+const ingredientsSlice = createSlice({
+    name: "ingredients",
+    initialState: initialState,
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchIngredients.pending, (state) => {
+                state.ingredientsRequest = true;
+                state.ingredientsFailed = false;
+            })
+            .addCase(fetchIngredients.fulfilled, (state, action) => {
+                state.ingredientsRequest = false;
+                state.ingredients = action.payload;
+            })
+            .addCase(fetchIngredients.rejected, (state) => {
+                state.ingredientsRequest = false;
+                state.ingredientsFailed = true;
+            });
+    },
+});
+
+export default ingredientsSlice.reducer;

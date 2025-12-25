@@ -1,4 +1,5 @@
-import { ADD_INGREDIENT, REMOVE_INGREDIENT } from "./actions";
+import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 
 const initialState = {
     bun: null,
@@ -29,53 +30,54 @@ function deleteFromIngredientsCountMap(countMap, ingredient) {
     }
 }
 
-export const constructorReducer = (state = initialState, action) => {
-    const newCountMap = new Map(state.ingredientsCount);
-    switch (action.type) {
-        case ADD_INGREDIENT:
-            addToIngredientsCountMap(newCountMap, action.payload);
+export const constructorSlice = createSlice({
+    name: "constructor",
+    initialState,
+    reducers: {
+        addIngredient: {
+            reducer: (state, action) => {
+                addToIngredientsCountMap(
+                    state.ingredientsCount,
+                    action.payload
+                );
 
-            if (action.payload.type === "bun") {
-                if (state.bun) {
-                    deleteFromIngredientsCountMap(newCountMap, state.bun);
+                if (action.payload.type === "bun") {
+                    if (state.bun) {
+                        deleteFromIngredientsCountMap(
+                            state.ingredientsCount,
+                            state.bun
+                        );
+                    }
+                    state.bun = action.payload;
+                } else {
+                    state.constrIngredients.push(action.payload);
                 }
+            },
+            prepare: (ingredient) => {
                 return {
-                    ...state,
-                    bun: action.payload,
-                    ingredientsCount: newCountMap,
+                    payload: {
+                        ...ingredient,
+                        uniqueKey: uuidv4(),
+                    },
                 };
-            } else {
-                return {
-                    ...state,
-                    constrIngredients: [
-                        ...state.constrIngredients,
-                        action.payload,
-                    ],
-                    ingredientsCount: newCountMap,
-                };
-            }
-
-        case REMOVE_INGREDIENT:
-            deleteFromIngredientsCountMap(newCountMap, action.payload);
+            },
+        },
+        removeIngredient: (state, action) => {
+            deleteFromIngredientsCountMap(
+                state.ingredientsCount,
+                action.payload
+            );
 
             if (action.payload.type === "bun") {
-                return {
-                    ...state,
-                    bun: null,
-                    ingredientsCount: newCountMap,
-                };
+                state.bun = null;
             } else {
-                return {
-                    ...state,
-                    constrIngredients:
-                        state.constructor.constrIngredients.filter(
-                            (item) => item.id !== action.payload.id
-                        ),
-                    ingredientsCount: newCountMap,
-                };
+                state.constrIngredients = state.constrIngredients.filter(
+                    (item) => item.id !== action.payload.id
+                );
             }
+        },
+    },
+});
 
-        default:
-            return state;
-    }
-};
+export const { addIngredient, removeIngredient } = constructorSlice.actions;
+export default constructorSlice.reducer;

@@ -4,8 +4,9 @@ import { useState } from "react";
 import IngradientDetailsModal from "components/modals/ingredient-details/ingredient-details";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addIngredient } from "services/constructor/actions";
+import { addIngredient } from "services/constructor/reducer";
 import { useSelector } from "react-redux";
+
 const BurgerContainer = (props) => {
     const [detailedItem, setDetailedItem] = useState(null);
     const dispatcher = useDispatch();

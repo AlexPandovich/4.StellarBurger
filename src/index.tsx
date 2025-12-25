@@ -3,22 +3,23 @@ import ReactDOM from "react-dom/client";
 import "./index.scss";
 import App from "./components/app/App";
 import reportWebVitals from "./reportWebVitals";
-import { configureStore } from "services/store";
-import { burgerIngredients } from "utils/data";
 import { Provider } from "react-redux";
+import { createStore } from "services/store";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
 );
 
-const store = configureStore({
-    constructor: {
-        bun: null,
-        constrIngredients: [],
-    },
-    ingredients: {
-        ingredients: [],
-        ingredientsRequest: false,
+const store = createStore({
+    preloadedState: {
+        constructor: {
+            bun: null,
+            constrIngredients: [],
+        },
+        ingredients: {
+            ingredients: [],
+            ingredientsRequest: false,
+        },
     },
 });
 

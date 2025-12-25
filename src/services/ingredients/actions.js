@@ -1,27 +1,17 @@
 import { getIngredientsRequest } from "../../utils/fakeApi";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const GET_INGREDIENTS_REQUEST = "GET_INGREDIENTS_REQUEST";
-export const GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS";
-export const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";
-
-export function getIngredients() {
-    return async function (dispatch) {
-        dispatch({
-            type: GET_INGREDIENTS_REQUEST,
-        });
-
+export const fetchIngredients = createAsyncThunk(
+    "ingredients/fetch",
+    async (_, thunkAPI) => {
         try {
-            const res = await getIngredientsRequest();
-            if (res && res.success) {
-                dispatch({
-                    type: GET_INGREDIENTS_SUCCESS,
-                    items: res.data,
-                });
+            const response = await getIngredientsRequest();
+            if (!response.success) {
+                return thunkAPI.rejectWithValue("Ошибка загрузки ингредиентов");
             }
-        } catch (error) {
-            dispatch({
-                type: GET_INGREDIENTS_FAILED,
-            });
+            return response.data;
+        } catch (err) {
+            return thunkAPI.rejectWithValue(err.message);
         }
-    };
-}
+    }
+);
