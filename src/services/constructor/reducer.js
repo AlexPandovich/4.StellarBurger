@@ -18,8 +18,8 @@ function addToIngredientsCountMap(countObj, ingredient) {
 
 function deleteFromIngredientsCountMap(countObj, ingredient) {
     const id = ingredient._id;
-    if (countObj.has(id)) {
-        const current = countObj.get(id);
+    if (id in countObj) {
+        const current = countObj[id];
         if (ingredient.type === "bun") {
             delete countObj[id];
         } else if (current > 1) {
@@ -67,12 +67,11 @@ export const constructorSlice = createSlice({
                 state.ingredientsCount,
                 action.payload
             );
-
             if (action.payload.type === "bun") {
                 state.bun = null;
             } else {
                 state.constrIngredients = state.constrIngredients.filter(
-                    (item) => item.id !== action.payload.id
+                    (item) => item.uniqueKey !== action.payload.uniqueKey
                 );
             }
         },

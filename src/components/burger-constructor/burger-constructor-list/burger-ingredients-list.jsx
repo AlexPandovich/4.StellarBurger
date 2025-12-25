@@ -5,9 +5,16 @@ import {
     DragIcon,
     ConstructorElement,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useDispatch } from "react-redux";
+import { removeIngredient } from "services/constructor/reducer";
 
 const BurgerIngradientsList = (props) => {
     const constrIngredients = props.ingredients;
+    const dispatch = useDispatch();
+
+    const onRemoveIngredient = React.useCallback((e, item) => {
+        dispatch(removeIngredient(item));
+    }, []);
 
     return (
         <>
@@ -38,6 +45,9 @@ const BurgerIngradientsList = (props) => {
                                         text={item.name_en}
                                         price={item.price}
                                         thumbnail={item.image_mobile}
+                                        handleClose={(e) =>
+                                            onRemoveIngredient(e, item)
+                                        }
                                     />
                                 </li>
                             );
