@@ -18,3 +18,7 @@ body {
 .outline {
     @include outline;
 }
+
+.outline__drop_area {
+    outline: 1px dashed $border-color;
+}

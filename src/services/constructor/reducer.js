@@ -75,8 +75,22 @@ export const constructorSlice = createSlice({
                 );
             }
         },
+        moveIngredient: (state, action) => {
+            const { dstKey, srcKey } = action.payload;
+            const updated = [...state.constrIngredients];
+
+            const srcIndex = updated.findIndex((i) => i.uniqueKey === srcKey);
+            let dstIndex = updated.findIndex((i) => i.uniqueKey === dstKey);
+
+            const [moved] = updated.splice(srcIndex, 1);
+
+            dstIndex = updated.findIndex((i) => i.uniqueKey === dstKey);
+            updated.splice(dstIndex, 0, moved);
+            state.constrIngredients = updated;
+        },
     },
 });
 
-export const { addIngredient, removeIngredient } = constructorSlice.actions;
+export const { addIngredient, removeIngredient, moveIngredient } =
+    constructorSlice.actions;
 export default constructorSlice.reducer;
