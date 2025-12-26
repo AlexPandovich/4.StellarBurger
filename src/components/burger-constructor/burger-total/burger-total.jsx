@@ -19,7 +19,9 @@ const BurgerTotal = (props) => {
                     type="primary"
                     size="medium"
                     onClick={props.onOrderReady}
-                    extraClass={styles.order_button}
+                    extraClass={`${styles.order_button} ${
+                        props.disabled ? styles.order_button__disabled : ""
+                    }`}
                 >
                     Order
                 </Button>

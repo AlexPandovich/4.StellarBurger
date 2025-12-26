@@ -8,18 +8,23 @@ import { useSelector } from "react-redux";
 
 const BurgerConstructor = (props) => {
     const [orderReady, setShowOrderReady] = useState(false);
+    const { constrIngredients, bun } = useSelector(
+        (state) => state.сonstructor
+    );
+
+    const enoughComponents = useMemo(() => {
+        if (bun && constrIngredients.length > 0) return true;
+        return false;
+    }, [constrIngredients, bun]);
 
     const onOrderDetailsClose = useCallback((e) => {
         setShowOrderReady(false);
     }, []);
 
     const onOrderDetailsShow = useCallback(() => {
-        setShowOrderReady(true);
-    }, []);
-
-    const { constrIngredients, bun } = useSelector(
-        (state) => state.сonstructor
-    );
+        console.log(enoughComponents);
+        if (enoughComponents) setShowOrderReady(true);
+    }, [enoughComponents]);
 
     const totalPrice = useMemo(() => {
         const ingradientsPrice = constrIngredients.reduce(
@@ -38,6 +43,7 @@ const BurgerConstructor = (props) => {
                 <BurgerTotal
                     onOrderReady={onOrderDetailsShow}
                     totalPrice={totalPrice}
+                    disabled={!enoughComponents}
                 />
             </section>
             {orderReady && <OrderDetailsModal onClose={onOrderDetailsClose} />}
