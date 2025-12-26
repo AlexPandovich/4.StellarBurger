@@ -21,13 +21,15 @@ const BurgerBun = (props) => {
         },
     });
 
-    const hoverStyle = `${
-        draggedItem
-            ? draggedItem.type === "bun"
-                ? "outline__drop_area"
-                : ""
-            : ""
-    }`;
+    let hoverStyle = "";
+
+    if (draggedItem) {
+        if (draggedItem.type === "bun") {
+            if (props.type === "bottom")
+                hoverStyle = "outline__drop_area--bottom";
+            else hoverStyle = "outline__drop_area--top";
+        }
+    }
 
     return (
         <div
@@ -38,7 +40,7 @@ const BurgerBun = (props) => {
                     <ConstructorElement
                         type={props.type}
                         isLocked={true}
-                        text={props.bun.name_en + " (top)"}
+                        text={props.bun.name_en + " " + props.type}
                         price={props.bun.price}
                         thumbnail={props.bun.image_mobile}
                     />

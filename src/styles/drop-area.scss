@@ -1,0 +1,20 @@
+@use "styles/variables.scss" as *;
+
+@mixin drop_outline {
+    outline: 1px dashed $border-color;
+}
+
+.outline__drop_area {
+    @include drop_outline;
+    border-radius: var(--common-border-radius-s);
+}
+
+.outline__drop_area--top {
+    @include drop_outline;
+    border-radius: var(--top-constructor-item-border-radius);
+}
+
+.outline__drop_area--bottom {
+    @include drop_outline;
+    border-radius: var(--bottom-constructor-item-border-radius);
+}
