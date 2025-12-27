@@ -19,4 +19,12 @@
     width: 215px;
     height: 64px;
     margin-right: 33px;
+    &__disabled {
+        cursor: not-allowed;
+        opacity: 0.3;
+        box-shadow: none;
+        &:hover {
+            box-shadow: none;
+        }
+    }
 }

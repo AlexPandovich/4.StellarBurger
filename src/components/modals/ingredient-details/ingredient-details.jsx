@@ -1,8 +1,7 @@
 import withModal from "../hocs/modal/with-modal";
-import styles from "./ingradient-details.module.scss";
+import styles from "./ingredient-details.module.scss";
 
-const IngradientDetails = ({ item }) => {
-
+const IngradientDetails = ({ item, onAddIngredient }) => {
     return (
         <div className={styles.ingradient}>
             <img src={item.image_large} alt="" />
@@ -38,6 +37,12 @@ const IngradientDetails = ({ item }) => {
                     </div>
                 </div>
             </div>
+            <button
+                className={styles.ingradient__button}
+                onClick={(e) => onAddIngredient(e, item)}
+            >
+                Add ingradient
+            </button>
         </div>
     );
 };

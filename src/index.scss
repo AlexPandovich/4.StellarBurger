@@ -1,6 +1,7 @@
 @use "styles/modern-normalize.css";
 @use "styles/basic.scss";
 @use "styles/variables.scss" as *;
+@use "styles/drop-area.scss";
 
 body {
     font-family: "JetBrains Mono", monospace, sans-serif;

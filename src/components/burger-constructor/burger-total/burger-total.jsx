@@ -3,13 +3,14 @@ import {
     CurrencyIcon,
     Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import React from "react";
+import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
 
 const BurgerTotal = (props) => {
     return (
         <div className={`${styles.total} mt-10 mb-10`}>
             <div className={`${styles.total__price} mr-10`}>
-                <span>610</span>
+                <span>{props.totalPrice}</span>
                 <CurrencyIcon type="primary" />
             </div>
             <div>
@@ -18,7 +19,9 @@ const BurgerTotal = (props) => {
                     type="primary"
                     size="medium"
                     onClick={props.onOrderReady}
-                    extraClass={styles.order_button}
+                    extraClass={`${styles.order_button} ${
+                        props.disabled ? styles.order_button__disabled : ""
+                    }`}
                 >
                     Order
                 </Button>
