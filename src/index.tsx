@@ -5,9 +5,10 @@ import App from "./components/app/App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { createStore } from "services/store";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
-    document.getElementById("root") as HTMLElement
+    document.getElementById("root") as HTMLElement,
 );
 
 const store = createStore({
@@ -24,9 +25,11 @@ const store = createStore({
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <App />
+            <Router>
+                <App />
+            </Router>
         </Provider>
-    </React.StrictMode>
+    </React.StrictMode>,
     // some changes
 );
 

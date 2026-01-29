@@ -1,12 +1,16 @@
 import "./App.scss";
 import AppHeader from "../app-header/AppHeader";
-import BurgerConstructor from "components/burger-constructor/burger-constructor";
-import BurgerIngredients from "components/burger-ingredients/burger-ingredients";
-import { useEffect } from "react";
+
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchIngredients } from "services/ingredients/actions";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import MainPage from "components/pages/MainPage";
+import {
+    IngredientDetails,
+    IngredientDetailsModal,
+} from "components/modals/ingredient-details/ingredient-details";
+import { addIngredient } from "services/constructor/reducer";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -14,17 +18,43 @@ const App = () => {
         dispatch(fetchIngredients());
     }, [dispatch]);
 
+    const location = useLocation();
+    let state = location.state;
+    let navigate = useNavigate();
+
+    const onAddIngredient = React.useCallback((e, item) => {
+        e.preventDefault();
+        dispatch(addIngredient(item));
+        if (state?.backgroundLocation) navigate(-1);
+        else navigate("/");
+    }, []);
+
     return (
         <>
             <AppHeader />
-            <div className="container">
-                <main className="main-content">
-                    <DndProvider backend={HTML5Backend}>
-                        <BurgerIngredients />
-                        <BurgerConstructor />
-                    </DndProvider>
-                </main>
-            </div>
+            <Routes location={state?.backgroundLocation || location}>
+                <Route path="/" element={<MainPage />}></Route>
+                <Route
+                    path="/ingredients/:id"
+                    element={
+                        <IngredientDetails onAddIngredient={onAddIngredient} />
+                    }
+                ></Route>
+            </Routes>
+
+            {state?.backgroundLocation && (
+                <Routes>
+                    <Route
+                        path="/ingredients/:id"
+                        element={
+                            <IngredientDetailsModal
+                                onClose={() => navigate(-1)}
+                                onAddIngredient={onAddIngredient}
+                            />
+                        }
+                    />
+                </Routes>
+            )}
         </>
     );
 };

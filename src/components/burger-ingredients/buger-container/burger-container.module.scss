@@ -1,7 +1,13 @@
+@use "styles/variables.scss" as *;
+
 .burger__container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
     list-style: none;
     padding-inline: 0;
+    a {
+        text-decoration: none;
+        color: $primary-light;
+    }
 }

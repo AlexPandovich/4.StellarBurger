@@ -18,12 +18,7 @@ const BurgerItem = (props) => {
     });
 
     return (
-        <div
-            className={styles.item}
-            onClick={(e) => props.onClick(e, item)}
-            ref={ref}
-            style={{ opacity }}
-        >
+        <div className={styles.item} ref={ref} style={{ opacity }}>
             <img src={item.image} alt="" className={styles.item__img} />
             <div className={`${styles.item__price} mt-2`}>
                 <span>{item.price}</span>
