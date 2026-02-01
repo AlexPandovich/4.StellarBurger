@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { fetchIngredients } from "services/ingredients/actions";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import MainPage from "components/pages/MainPage";
+import LoginPage from "components/pages/LoginPage";
 import {
     IngredientDetails,
     IngredientDetailsModal,
@@ -34,6 +35,9 @@ const App = () => {
             <AppHeader />
             <Routes location={state?.backgroundLocation || location}>
                 <Route path="/" element={<MainPage />}></Route>
+                <Route path="/login" element={<LoginPage />}>
+                    {" "}
+                </Route>
                 <Route
                     path="/ingredients/:id"
                     element={
