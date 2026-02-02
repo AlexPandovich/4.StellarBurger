@@ -4,8 +4,16 @@ const LoginPage = () => {
     return (
         <div className={`${styles.login}`}>
             <h2 className={styles.login__header}>Log in</h2>
-            <input type="text" className={`${styles.login__input} mt-6 `} />
-            <input type="text" className={`${styles.login__input} mt-6 `} />
+            <input
+                type="text"
+                placeholder="E-mail"
+                className={`${styles.login__input} mt-6 `}
+            />
+            <input
+                type="text"
+                placeholder="Password"
+                className={`${styles.login__input} mt-6 `}
+            />
             <Button
                 htmlType="button"
                 type="primary"

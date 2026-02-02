@@ -12,6 +12,9 @@ import {
     IngredientDetailsModal,
 } from "components/modals/ingredient-details/ingredient-details";
 import { addIngredient } from "services/constructor/reducer";
+import RegisterPage from "components/pages/RegisterPage";
+import Restore1Page from "components/pages/Restore1Page";
+import Restore2Page from "components/pages/Restore2Page";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -35,9 +38,10 @@ const App = () => {
             <AppHeader />
             <Routes location={state?.backgroundLocation || location}>
                 <Route path="/" element={<MainPage />}></Route>
-                <Route path="/login" element={<LoginPage />}>
-                    {" "}
-                </Route>
+                <Route path="/login" element={<LoginPage />}></Route>
+                <Route path="/register" element={<RegisterPage />}></Route>
+                <Route path="/restore" element={<Restore1Page />}></Route>
+                <Route path="/restore2" element={<Restore2Page />}></Route>
                 <Route
                     path="/ingredients/:id"
                     element={

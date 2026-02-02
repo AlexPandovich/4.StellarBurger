@@ -1,4 +1,4 @@
-.login {
+.restore {
     margin: 0 auto;
     margin-top: 180px;
     width: 480px;
@@ -23,13 +23,8 @@
         margin: 24px auto 0 auto;
     }
 }
-.register__block {
-    text-align: center;
-    a {
-        color: var(--colors-interface-accent);
-    }
-}
-.restore__block {
+
+.login__block {
     text-align: center;
     a {
         color: var(--colors-interface-accent);
