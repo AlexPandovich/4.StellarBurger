@@ -15,6 +15,7 @@ import { addIngredient } from "services/constructor/reducer";
 import RegisterPage from "components/pages/RegisterPage";
 import Restore1Page from "components/pages/Restore1Page";
 import Restore2Page from "components/pages/Restore2Page";
+import ProfilePage from "components/pages/ProfilePage";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -42,6 +43,7 @@ const App = () => {
                 <Route path="/register" element={<RegisterPage />}></Route>
                 <Route path="/restore" element={<Restore1Page />}></Route>
                 <Route path="/restore2" element={<Restore2Page />}></Route>
+                <Route path="/profile" element={<ProfilePage />}></Route>
                 <Route
                     path="/ingredients/:id"
                     element={
