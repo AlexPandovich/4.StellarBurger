@@ -1,6 +1,6 @@
 import styles from "./Restore.module.scss";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-const Restore1Page = () => {
+const ForgotPasswordPage = () => {
     return (
         <div className={`${styles.restore}`}>
             <h2 className={styles.restore__header}>Restore password</h2>

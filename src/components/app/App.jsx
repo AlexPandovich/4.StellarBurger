@@ -13,8 +13,8 @@ import {
 } from "components/modals/ingredient-details/ingredient-details";
 import { addIngredient } from "services/constructor/reducer";
 import RegisterPage from "components/pages/RegisterPage";
-import Restore1Page from "components/pages/Restore1Page";
-import Restore2Page from "components/pages/Restore2Page";
+import Restore1Page from "components/pages/ForgotPassword";
+import Restore2Page from "components/pages/ResetPasswordPage";
 import ProfilePage from "components/pages/ProfilePage";
 
 const App = () => {
@@ -41,8 +41,8 @@ const App = () => {
         <Route path="/" element={<MainPage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/register" element={<RegisterPage />}></Route>
-        <Route path="/restore" element={<Restore1Page />}></Route>
-        <Route path="/restore2" element={<Restore2Page />}></Route>
+        <Route path="/forgot-password" element={<ForgotPasswordPage />}></Route>
+        <Route path="/reset-password" element={<ResetPasswordPage />}></Route>
         <Route path="/profile" element={<ProfilePage />}></Route>
         <Route
           path="/ingredients/:id"
