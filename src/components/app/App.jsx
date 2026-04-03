@@ -13,9 +13,11 @@ import {
 } from "components/modals/ingredient-details/ingredient-details";
 import { addIngredient } from "services/constructor/reducer";
 import RegisterPage from "components/pages/RegisterPage";
-import Restore1Page from "components/pages/ForgotPassword";
-import Restore2Page from "components/pages/ResetPasswordPage";
+import ResetPasswordPage from "components/pages/ResetPasswordPage";
+import ForgotPasswordPage from "components/pages/ForgotPassword";
 import ProfilePage from "components/pages/ProfilePage";
+import { ProtectedRouteElement } from "components/ProtectedRouteElement";
+import { GuestsRouteElement } from "components/GuestsRouteElements";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -39,11 +41,26 @@ const App = () => {
       <AppHeader />
       <Routes location={state?.backgroundLocation || location}>
         <Route path="/" element={<MainPage />}></Route>
-        <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/register" element={<RegisterPage />}></Route>
-        <Route path="/forgot-password" element={<ForgotPasswordPage />}></Route>
-        <Route path="/reset-password" element={<ResetPasswordPage />}></Route>
-        <Route path="/profile" element={<ProfilePage />}></Route>
+        <Route
+          path="/login"
+          element={<GuestsRouteElement element={<LoginPage />} />}
+        ></Route>
+        <Route
+          path="/register"
+          element={<GuestsRouteElement element={<RegisterPage />} />}
+        ></Route>
+        <Route
+          path="/forgot-password"
+          element={<GuestsRouteElement element={<ForgotPasswordPage />} />}
+        ></Route>
+        <Route
+          path="/reset-password"
+          element={<GuestsRouteElement element={<ResetPasswordPage />} />}
+        ></Route>
+        <Route
+          path="/profile"
+          element={<ProtectedRouteElement element={<ProfilePage />} />}
+        ></Route>
         <Route
           path="/ingredients/:id"
           element={<IngredientDetails onAddIngredient={onAddIngredient} />}

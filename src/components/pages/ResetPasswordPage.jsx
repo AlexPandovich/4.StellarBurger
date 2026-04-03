@@ -29,4 +29,4 @@ const ResetPasswordPage = () => {
   );
 };
 
-export default Restore2Page;
+export default ResetPasswordPage;

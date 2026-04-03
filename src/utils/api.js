@@ -98,7 +98,7 @@ export const refreshTokenRequest = async ({ token }) => {
   });
 };
 
-export const getUserRequest = async () => {
+export const getUserRequest = async (token) => {
   const form = { token };
   return await fetch("http://localhost:2000/api/auth/user", {
     method: "GET",
