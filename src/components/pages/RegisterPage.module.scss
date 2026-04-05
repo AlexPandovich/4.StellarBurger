@@ -1,32 +1,36 @@
 .register {
-    margin: 0 auto;
-    margin-top: 180px;
+  margin: 0 auto;
+  margin-top: 180px;
+  width: 480px;
+  display: block;
+  &__header {
+    text-align: center;
+  }
+  &__input {
+    padding-left: 30px;
+    height: 64px;
     width: 480px;
+    border-radius: 40px;
+    outline: none;
+    border: none;
+    background-color: var(--background-element);
+    color: var(--text-inactive-color);
+  }
+  &__button {
+    width: 215px;
+    height: 64px;
+    margin-right: 33px;
     display: block;
-    &__header {
-        text-align: center;
-    }
-    &__input {
-        padding-left: 30px;
-        height: 64px;
-        width: 480px;
-        border-radius: 40px;
-        outline: none;
-        border: none;
-        background-color: var(--background-element);
-    }
-    &__button {
-        width: 215px;
-        height: 64px;
-        margin-right: 33px;
-        display: block;
-        margin: 24px auto 0 auto;
-    }
+    margin: 24px auto 0 auto;
+  }
+}
+.errorMessage {
+  color: var(--colors-interface-error);
 }
 
 .login__block {
-    text-align: center;
-    a {
-        color: var(--colors-interface-accent);
-    }
+  text-align: center;
+  a {
+    color: var(--colors-interface-accent);
+  }
 }

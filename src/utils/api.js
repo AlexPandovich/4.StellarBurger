@@ -37,7 +37,7 @@ export const resetPasswordRequest = async ({ token, password }) => {
 
 export const registerRequest = async ({ email, password, name }) => {
   const form = { email, password, name };
-  return await fetch("http://localhost:2000/api/auth/register", {
+  return fetch("http://localhost:2000/register", {
     method: "POST",
     mode: "cors",
     cache: "no-cache",
@@ -52,7 +52,7 @@ export const registerRequest = async ({ email, password, name }) => {
 };
 export const loginRequest = async ({ email, password }) => {
   const form = { email, password };
-  return await fetch("http://localhost:2000/api/auth/login", {
+  return await fetch("http://localhost:2000/login", {
     method: "POST",
     mode: "cors",
     cache: "no-cache",
