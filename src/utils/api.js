@@ -84,7 +84,7 @@ export const logoutRequest = async ({ token }) => {
 
 export const refreshTokenRequest = async ({ token }) => {
   const form = { token };
-  return await fetch("http://localhost:2000/api/auth/token", {
+  return await fetch("http://localhost:2000/token", {
     method: "POST",
     mode: "cors",
     cache: "no-cache",
@@ -99,18 +99,18 @@ export const refreshTokenRequest = async ({ token }) => {
 };
 
 export const getUserRequest = async (token) => {
-  const form = { token };
-  return await fetch("http://localhost:2000/api/auth/user", {
+  console.log(token);
+  return await fetch("http://localhost:2000/user", {
     method: "GET",
     mode: "cors",
     cache: "no-cache",
     credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `${token}`,
     },
     redirect: "follow",
     referrerPolicy: "no-referrer",
-    // body: JSON.stringify(form),
   });
 };
 

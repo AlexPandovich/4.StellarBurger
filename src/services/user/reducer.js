@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, registerUser } from "./actions";
+import { loginUser, registerUser, loginByRefreshToken } from "./actions";
+import { setCookie } from "services/cookies/cookies";
 
 const initialState = {
   userName: null,
@@ -38,6 +39,10 @@ const userSlice = createSlice({
         state.userName = action.payload.userName;
         state.email = action.payload.email;
         state.accessToken = action.payload.accessToken;
+
+        setCookie("refresh-token", action.payload.refreshToken, {
+          expires: 3600,
+        });
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.status = "failed";
@@ -53,10 +58,34 @@ const userSlice = createSlice({
         state.userName = action.payload.userName;
         state.email = action.payload.email;
         state.accessToken = action.payload.accessToken;
+
+        setCookie("refresh-token", action.payload.refreshToken, {
+          expires: 3600,
+        });
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
+      })
+      ///------------------------------------------------------
+      .addCase(loginByRefreshToken.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      })
+      .addCase(loginByRefreshToken.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(loginByRefreshToken.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        console.log("succeeded ", action);
+        state.userName = action.payload.userName;
+        state.email = action.payload.email;
+        state.accessToken = action.payload.accessToken;
+
+        setCookie("refresh-token", action.payload.refreshToken, {
+          expires: 3600,
+        });
       });
   },
 });

@@ -4,6 +4,7 @@ import AppHeader from "../app-header/AppHeader";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchIngredients } from "services/ingredients/actions";
+import { loginByRefreshToken } from "services/user/actions";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import MainPage from "components/pages/MainPage";
 import LoginPage from "components/pages/LoginPage";
@@ -18,12 +19,19 @@ import ForgotPasswordPage from "components/pages/ForgotPassword";
 import ProfilePage from "components/pages/ProfilePage";
 import { ProtectedRouteElement } from "components/ProtectedRouteElement";
 import { GuestsRouteElement } from "components/GuestsRouteElements";
+import { getCookie } from "services/cookies/cookies";
 
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchIngredients());
   }, [dispatch]);
+
+  useEffect(() => {
+    const refreshToken = getCookie("refresh-token");
+    console.log("refresh token ", refreshToken);
+    dispatch(loginByRefreshToken(refreshToken));
+  }, []);
 
   const location = useLocation();
   let state = location.state;
