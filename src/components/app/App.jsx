@@ -16,10 +16,12 @@ import { addIngredient } from "services/constructor/reducer";
 import RegisterPage from "components/pages/RegisterPage";
 import ResetPasswordPage from "components/pages/ResetPasswordPage";
 import ForgotPasswordPage from "components/pages/ForgotPassword";
-import ProfilePage from "components/pages/ProfilePage";
+import ProfilePage from "components/pages/profile-page/ProfilePage";
 import { ProtectedRouteElement } from "components/ProtectedRouteElement";
 import { GuestsRouteElement } from "components/GuestsRouteElements";
 import { getCookie } from "services/cookies/cookies";
+import ProfileOutlet from "components/pages/profile-page/ProfileOutlet";
+import OrderHistoryOutlet from "components/pages/profile-page/OrderHistoryOutlet";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -68,7 +70,10 @@ const App = () => {
         <Route
           path="/profile"
           element={<ProtectedRouteElement element={<ProfilePage />} />}
-        ></Route>
+        >
+          <Route index element={<ProfileOutlet />} />
+          <Route path="order-history" element={<OrderHistoryOutlet />} />
+        </Route>
         <Route
           path="/ingredients/:id"
           element={<IngredientDetails onAddIngredient={onAddIngredient} />}
