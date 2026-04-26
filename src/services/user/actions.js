@@ -5,6 +5,7 @@ import {
   refreshTokenRequest,
   registerRequest,
   getUserRequest,
+  updateUserInfoRequest,
 } from "utils/api";
 
 export const registerUser = createAsyncThunk(
@@ -114,6 +115,29 @@ export const loginByRefreshToken = createAsyncThunk(
       }
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
+    }
+  },
+);
+
+export const updateUserByAccessToken = createAsyncThunk(
+  "user/update",
+  async ({ accessToken, user }, { rejectWithValue }) => {
+    try {
+      const response = await updateUserInfoRequest(accessToken, user);
+      const data = await response.json();
+
+      if (!response.ok) {
+        return rejectWithValue(data.message);
+      }
+      if (!data.success) {
+        return rejectWithValue("incorrect data received from server");
+      }
+      return {
+        userName: data.user.name,
+        email: data.user.email,
+      };
+    } catch (err) {
+      return rejectWithValue(err.message);
     }
   },
 );

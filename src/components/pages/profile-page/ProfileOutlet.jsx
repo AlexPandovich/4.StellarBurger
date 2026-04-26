@@ -1,10 +1,11 @@
 import styles from "./ProfilePage.module.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { Input } from "components/input/Input";
 import { PasswordInput } from "components/password-input/PasswordInput";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useCallback } from "react";
+import { updateUserByAccessToken } from "services/user/actions";
 
 const ProfileOutlet = () => {
   const user = useSelector((state) => state.user);
@@ -17,12 +18,16 @@ const ProfileOutlet = () => {
   const onChange = (e) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
+  const dispatch = useDispatch();
 
   let onSave = useCallback(
     async (e) => {
       e.preventDefault();
-      console.log(form);
-      // dispatch(loginUser(form));
+      console.log("update user", form);
+      console.log("access token ", user.accessToken);
+      dispatch(
+        updateUserByAccessToken({ accessToken: user.accessToken, user: form }),
+      );
     },
     [form],
   );

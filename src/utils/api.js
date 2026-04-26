@@ -114,14 +114,15 @@ export const getUserRequest = async (token) => {
   });
 };
 
-export const updateUserInfoRequest = async (user) => {
-  return await fetch("http://localhost:2000/api/auth/user", {
+export const updateUserInfoRequest = async (token, user) => {
+  return await fetch("http://localhost:2000/user", {
     method: "PATCH",
     mode: "cors",
     cache: "no-cache",
     credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     redirect: "follow",
     referrerPolicy: "no-referrer",
