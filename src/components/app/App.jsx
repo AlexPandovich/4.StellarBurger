@@ -22,6 +22,7 @@ import { GuestsRouteElement } from "components/GuestsRouteElements";
 import { getCookie } from "services/cookies/cookies";
 import ProfileOutlet from "components/pages/profile-page/ProfileOutlet";
 import OrderHistoryOutlet from "components/pages/profile-page/OrderHistoryOutlet";
+import OrderFeedPage from "components/pages/OrderFeedPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -59,6 +60,7 @@ const App = () => {
           path="/register"
           element={<GuestsRouteElement element={<RegisterPage />} />}
         ></Route>
+
         <Route
           path="/forgot-password"
           element={<GuestsRouteElement element={<ForgotPasswordPage />} />}
@@ -66,6 +68,10 @@ const App = () => {
         <Route
           path="/reset-password"
           element={<GuestsRouteElement element={<ResetPasswordPage />} />}
+        ></Route>
+        <Route
+          path="/order-feed"
+          element={<ProtectedRouteElement element={<OrderFeedPage />} />}
         ></Route>
         <Route
           path="/profile"
