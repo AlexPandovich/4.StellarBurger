@@ -1,30 +1,13 @@
 import styles from "./burger-container.module.scss";
 import BurgerItem from "../burger-item/burger-item";
-import { useState } from "react";
-import IngradientDetailsModal from "components/modals/ingredient-details/ingredient-details";
 import React from "react";
-import { useDispatch } from "react-redux";
-import { addIngredient } from "services/constructor/reducer";
 import { useSelector } from "react-redux";
+import { useLocation, Link } from "react-router-dom";
 
 const BurgerContainer = (props) => {
-    const [detailedItem, setDetailedItem] = useState(null);
-    const dispatcher = useDispatch();
     const { ingredientsCount } = useSelector((state) => state.сonstructor);
 
-    const onClose = React.useCallback((e) => {
-        setDetailedItem(null);
-    }, []);
-
-    const onItemClick = React.useCallback((e, item) => {
-        setDetailedItem(item);
-    }, []);
-
-    const onAddIngredient = React.useCallback((e, item) => {
-        e.preventDefault();
-        dispatcher(addIngredient(item));
-        onClose(e);
-    }, []);
+    let location = useLocation();
 
     return (
         <>
@@ -36,23 +19,20 @@ const BurgerContainer = (props) => {
                         const count = ingredientsCount[item._id] || 0;
 
                         return (
-                            <BurgerItem
+                            <Link
                                 key={item._id}
-                                item={item}
-                                count={count}
-                                onClick={onItemClick}
-                            />
+                                to={`/ingredients/${item._id}`}
+                                state={{ backgroundLocation: location }}
+                            >
+                                <BurgerItem
+                                    key={item._id}
+                                    item={item}
+                                    count={count}
+                                />
+                            </Link>
                         );
                     })}
             </div>
-
-            {detailedItem != null && (
-                <IngradientDetailsModal
-                    onClose={onClose}
-                    item={detailedItem}
-                    onAddIngredient={onAddIngredient}
-                />
-            )}
         </>
     );
 };

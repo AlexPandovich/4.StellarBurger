@@ -1,10 +1,27 @@
 import withModal from "../hocs/modal/with-modal";
 import styles from "./ingredient-details.module.scss";
+import { useSelector } from "react-redux";
+import { useParams, Link } from "react-router-dom";
 
-const IngradientDetails = ({ item, onAddIngredient }) => {
+const IngredientDetails = ({ onAddIngredient }) => {
+    const { ingredients, ingredientsRequest } = useSelector(
+        (state) => state.ingredients,
+    );
+
+    const { id } = useParams();
+
+    const item = ingredients.find((item) => item._id === id);
+
+    if (ingredientsRequest) {
+        return <p>Loading...</p>;
+    }
+    if (!item) {
+        return <p>Ingredient not found</p>;
+    }
+    console.log(item);
     return (
         <div className={styles.ingradient}>
-            <img src={item.image_large} alt="" />
+            <img src={item.image_large} alt={item.name_en} />
             <h2 className={`${styles.ingradient__text} mt-4`}>
                 {" "}
                 {item.name_en}
@@ -47,6 +64,6 @@ const IngradientDetails = ({ item, onAddIngredient }) => {
     );
 };
 
-const IngradientDetailsModal = withModal(IngradientDetails);
+const IngredientDetailsModal = withModal(IngredientDetails);
 
-export default IngradientDetailsModal;
+export { IngredientDetails, IngredientDetailsModal };

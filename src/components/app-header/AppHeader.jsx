@@ -2,52 +2,32 @@ import React from "react";
 import styles from "./AppHeader.module.scss";
 
 import {
-    Button,
-    Logo,
-    BurgerIcon,
-    ListIcon,
-    ProfileIcon,
+  Logo,
+  BurgerIcon,
+  ListIcon,
+  ProfileIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import HeaderLink from "./header-link/header-link";
+import { useSelector } from "react-redux";
 
 const AppHeader = () => {
-    return (
-        <header className="p-4">
-            <div className={`${styles.container} container`}>
-                <div className={styles.button_wrapper}>
-                    <Button
-                        htmlType="button"
-                        type="secondary"
-                        size="small"
-                        extraClass={`${styles.btn} ${styles.outline} `}
-                    >
-                        <BurgerIcon type="primary" className="outline" />
-                        <span>Order builder</span>
-                    </Button>
-                    <Button
-                        htmlType="button"
-                        type="secondary"
-                        size="small"
-                        extraClass={`${styles.btn} ${styles.outline} `}
-                    >
-                        <ListIcon type="primary" className="outline" />
-                        <span>Order feed</span>
-                    </Button>
-                </div>
+  const user = useSelector((state) => state.user);
+  const userName = user.userName ? user.userName : "Personal account";
 
-                <Logo className="outline" />
+  return (
+    <header className="p-4">
+      <div className={`${styles.container} container`}>
+        <div className={styles.button_wrapper}>
+          <HeaderLink path="/" Icon={BurgerIcon} text="Order builder" />
+          <HeaderLink path="order-feed" Icon={ListIcon} text="Order feed" />
+        </div>
 
-                <Button
-                    htmlType="button"
-                    type="secondary"
-                    size="small"
-                    extraClass={`${styles.btn} ${styles.outline} ${styles.personal_account} `}
-                >
-                    <ProfileIcon type="primary" className="outline" />
-                    <span>Personal account</span>
-                </Button>
-            </div>
-        </header>
-    );
+        <Logo className="outline" />
+
+        <HeaderLink path="/profile" Icon={ProfileIcon} text={userName} />
+      </div>
+    </header>
+  );
 };
 
 export default React.memo(AppHeader);

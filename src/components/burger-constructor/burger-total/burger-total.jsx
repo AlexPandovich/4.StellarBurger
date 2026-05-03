@@ -3,8 +3,8 @@ import {
     CurrencyIcon,
     Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+
 
 const BurgerTotal = (props) => {
     return (
